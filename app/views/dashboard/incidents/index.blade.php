@@ -19,9 +19,6 @@
                                 <i class="{{ $incident->icon }}"></i>
                                 <strong>
                                     {{ $incident->name }}
-                                    @if($incident->isScheduled)
-                                    , scheduled for {{ $incident->published_at->format($dateFormat) }}
-                                    @endif
                                 </strong>
                                 @if($incident->message)
                                 <p><small>{{ Str::words($incident->message, 5) }}</small></p>
