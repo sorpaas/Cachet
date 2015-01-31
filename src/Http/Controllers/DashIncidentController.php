@@ -14,6 +14,30 @@ use Illuminate\Support\Facades\View;
 
 class DashIncidentController extends Controller
 {
+    protected $subMenu = [];
+    protected $subTitle = 'Incident Management';
+
+    public function __construct()
+    {
+        $this->subMenu = [
+            'incidents' => [
+                'title'  => trans('dashboard.incidents.incidents'),
+                'url'    => '/dashboard/incidents',
+                'icon'   => 'ion-android-alert',
+                'active' => false,
+            ],
+            'schedules' => [
+                'title'  => trans('dashboard.settings.app-setup.app-setup'),
+                'url'    => '/dashboard/settings/setup',
+                'icon'   => 'ion-gear-b',
+                'active' => false,
+            ],
+        ];
+
+        View::share('subTitle', $this->subTitle);
+        View::share('subMenu', $this->subMenu);
+    }
+
     /**
      * Shows the incidents view.
      *
@@ -27,6 +51,7 @@ class DashIncidentController extends Controller
             'pageTitle'  => trans('dashboard.incidents.incidents').' - '.trans('dashboard.dashboard'),
             'incidents'  => $incidents,
             'dateFormat' => Setting::get('date_format') ?: 'jS M Y',
+            'subMenu'    => $this->subMenu,
         ]);
     }
 

@@ -86,6 +86,10 @@
                                 <textarea name="incident[message]" class="form-control" rows="5" required>{{ Input::old('incident.message') }}</textarea>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label>{{ trans('forms.incidents.scheduled') }}</label>
+                            <input type="text" rel="date" class="form-control" name="incident[published_date]" data-date-start-date="{{ date('d/m/Y') }}" />
+                        </div>
                     </fieldset>
 
                     <input type="hidden" name="incident[user_id]" value="{{ $loggedUser->id }}">
