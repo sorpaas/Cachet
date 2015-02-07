@@ -21,6 +21,11 @@ return [
             'failure' => 'Something went wrong with the incident.',
         ],
 
+        // Scheduled Maintenance
+        'schedule' => [
+            'title' => 'Scheduled Maintenance',
+        ],
+
         // Incident templates
         'templates' => [
             'title' => 'Incident Templates',

@@ -49,6 +49,14 @@ Route::group(['before' => 'auth', 'prefix' => 'dashboard', 'namespace' => 'Cache
         Route::post('{incident}/edit', 'DashIncidentController@editIncidentAction');
     });
 
+    // Scheduled maintenance
+    Route::group(['prefix' => 'schedule'], function () {
+        Route::get('/', [
+            'as'   => 'dashboard.schedule',
+            'uses' => 'DashIncidentController@showSchedule',
+        ]);
+    });
+
     // Incident Templates
     Route::group(['prefix' => 'templates'], function () {
         Route::get('/', [

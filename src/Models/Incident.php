@@ -68,6 +68,30 @@ class Incident extends Model implements TransformableInterface, PresenterInterfa
     protected $appends = ['humanStatus'];
 
     /**
+     * Returns only scheduled incidents.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeScheduled($query)
+    {
+        return $query->whereRaw('published_at <> created_at');
+    }
+
+    /**
+     * Returns only scheduled incidents.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeUnscheduled($query)
+    {
+        return $query->whereRaw('published_at = created_at');
+    }
+
+    /**
      * Get presenter class.
      *
      * @return string

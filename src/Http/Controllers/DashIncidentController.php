@@ -27,9 +27,9 @@ class DashIncidentController extends Controller
                 'active' => false,
             ],
             'schedules' => [
-                'title'  => trans('dashboard.settings.app-setup.app-setup'),
-                'url'    => '/dashboard/settings/setup',
-                'icon'   => 'ion-gear-b',
+                'title'  => trans('dashboard.incidents.schedule.title'),
+                'url'    => '/dashboard/schedule',
+                'icon'   => 'ion-clock',
                 'active' => false,
             ],
         ];
@@ -45,7 +45,8 @@ class DashIncidentController extends Controller
      */
     public function showIncidents()
     {
-        $incidents = Incident::orderBy('created_at', 'desc')->get();
+        $incidents = Incident::unscheduled()->orderBy('created_at', 'desc')->get();
+        $this->subMenu['incidents']['active'] = true;
 
         return View::make('dashboard.incidents.index')->with([
             'pageTitle'  => trans('dashboard.incidents.incidents').' - '.trans('dashboard.dashboard'),
@@ -66,6 +67,24 @@ class DashIncidentController extends Controller
             'pageTitle'         => trans('dashboard.incidents.add.title').' - '.trans('dashboard.dashboard'),
             'components'        => Component::all(),
             'incidentTemplates' => IncidentTemplate::all(),
+        ]);
+    }
+
+    /**
+     * Shows the scheduled maintenance view.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function showSchedule()
+    {
+        $incidents = Incident::scheduled()->orderBy('created_at', 'desc')->get();
+        $this->subMenu['incidents']['active'] = true;
+
+        return View::make('dashboard.incidents.schedule.index')->with([
+            'pageTitle'  => trans('dashboard.incidents.schedule.title').' - '.trans('dashboard.dashboard'),
+            'incidents'  => $incidents,
+            'dateFormat' => Setting::get('date_format') ?: 'jS M Y',
+            'subMenu'    => $this->subMenu,
         ]);
     }
 
