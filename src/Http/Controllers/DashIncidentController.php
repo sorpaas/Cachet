@@ -78,7 +78,7 @@ class DashIncidentController extends Controller
     public function showSchedule()
     {
         $incidents = Incident::scheduled()->orderBy('created_at', 'desc')->get();
-        $this->subMenu['incidents']['active'] = true;
+        $this->subMenu['schedules']['active'] = true;
 
         return View::make('dashboard.incidents.schedule.index')->with([
             'pageTitle'  => trans('dashboard.incidents.schedule.title').' - '.trans('dashboard.dashboard'),
