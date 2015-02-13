@@ -6,12 +6,19 @@
         @include('partials.dashboard.sub-sidebar')
         @endif
         <div class="content-wrapper">
+            <div class="header sub-header">
+                <span class="uppercase">
+                    <i class="icons ion-android-alert"></i> {{ trans('dashboard.incidents.incidents') }}
+                </span>
+                <a class="btn btn-sm btn-success pull-right" href="{{ route('dashboard.incidents.add') }}">
+                    {{ trans('dashboard.incidents.add.title') }}
+                </a>
+                <div class="clearfix"></div>
+            </div>
+            @include('partials.dashboard.errors')
+            <p class="lead">{{ trans_choice('dashboard.incidents.logged', $incidents->count(), ['count' => $incidents->count()]) }}</p>
             <div class="row">
                 <div class="col-sm-12">
-                    <h4 class="sub-header">{{ trans('dashboard.incidents.incidents') }}</h4>
-                    @include('partials.dashboard.errors')
-                    <p class="lead">{{ trans_choice('dashboard.incidents.logged', $incidents->count(), ['count' => $incidents->count()]) }}</p>
-
                     <div class="striped-list">
                         @foreach($incidents as $incident)
                         <div class="row striped-list-item">
