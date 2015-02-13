@@ -6,9 +6,17 @@
         @include('partials.dashboard.sub-sidebar')
         @endif
         <div class="content-wrapper">
+            <div class="header sub-header">
+                <span class="uppercase">
+                    <i class="icons ion-clock"></i> {{ trans('dashboard.incidents.schedule.title') }}
+                </span>
+                <a class="btn btn-sm btn-success pull-right" href="{{ route('dashboard.schedule.add') }}">
+                    {{ trans('dashboard.incidents.schedule.add.title') }}
+                </a>
+                <div class="clearfix"></div>
+            </div>
             <div class="row">
                 <div class="col-sm-12">
-                    <h4 class="sub-header">{{ trans('dashboard.incidents.schedule.title') }}</h4>
                     @include('partials.dashboard.errors')
 
                     <div class="striped-list">

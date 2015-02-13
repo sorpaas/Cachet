@@ -24,6 +24,9 @@ return [
         // Scheduled Maintenance
         'schedule' => [
             'title' => 'Scheduled Maintenance',
+            'add'   => [
+                'title' => 'Add scheduled incident',
+            ],
         ],
 
         // Incident templates

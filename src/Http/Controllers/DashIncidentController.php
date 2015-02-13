@@ -89,6 +89,19 @@ class DashIncidentController extends Controller
     }
 
     /**
+     * Shows the add scheduled incident page.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function showAddSchedule()
+    {
+        return View::make('dashboard.incidents.schedule.add')->with([
+            'pageTitle'         => trans('dashboard.incidents.schedule.add.title').' - '.trans('dashboard.dashboard'),
+            'incidentTemplates' => IncidentTemplate::all(),
+        ]);
+    }
+
+    /**
      * Shows the incident templates.
      *
      * @return \Illuminate\View\View

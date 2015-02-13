@@ -54,32 +54,6 @@
                                 {{ trans('cachet.incidents.status')[4] }}
                             </label>
                         </div>
-                        @if($components->count() > 0)
-                        <div class="form-group">
-                            <label>{{ trans('forms.incidents.component') }}</label>
-                            <select name='incident[component_id]' class='form-control'>
-                                <option value='0' selected></option>
-                                @foreach($components as $component)
-                                <option value='{{ $component->id }}'>{{ $component->name }}</option>
-                                @endforeach
-                            </select>
-                            <span class='help-block'>{{ trans('forms.optional') }}</span>
-                        </div>
-                        @endif
-                        <div class="form-group hidden" id='component-status'>
-                            <div class="well">
-                                <div class="radio-items">
-                                    @foreach(trans('cachet.components.status') as $statusID => $status)
-                                    <div class="radio-inline">
-                                        <label>
-                                            <input type="radio" name="incident[component_status]" value="{{ $statusID }}" >
-                                            {{ $status }}
-                                        </label>
-                                    </div>
-                                    @endforeach
-                                </div>
-                            </div>
-                        </div>
                         <div class="form-group">
                             <label>{{ trans('forms.incidents.message') }}</label>
                             <div class="markdown-control">
@@ -88,7 +62,7 @@
                         </div>
                         <div class="form-group">
                             <label>{{ trans('forms.incidents.scheduled') }}</label>
-                            <input type="text" rel="date" class="form-control" name="incident[published_date]" data-date-start-date="{{ date('d/m/Y') }}" />
+                            <input type="text" rel="date" class="form-control" name="incident[published_date]" data-date-start-date="{{ date('d/m/Y') }}" required>
                         </div>
                     </fieldset>
 

@@ -55,6 +55,11 @@ Route::group(['before' => 'auth', 'prefix' => 'dashboard', 'namespace' => 'Cache
             'as'   => 'dashboard.schedule',
             'uses' => 'DashIncidentController@showSchedule',
         ]);
+
+        Route::get('add', [
+            'as'   => 'dashboard.schedule.add',
+            'uses' => 'DashIncidentController@showAddSchedule',
+        ]);
     });
 
     // Incident Templates
